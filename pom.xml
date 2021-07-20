@@ -32,8 +32,14 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>6.9.1</version>
 		</dependency>
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>maven-cucumber-reporting</artifactId>
+			<version>4.5.0</version>
+		</dependency>
 	</dependencies>
 	<build>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -43,6 +49,28 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.3.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>CucumberBasicsWithReporting</projectName>
+                            <outputDirectory>${project.build.directory}/JSONReports</outputDirectory>
+                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                            <jsonFiles>
+                            	<param>**/*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>
